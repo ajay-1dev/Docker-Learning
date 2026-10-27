@@ -1,0 +1,30 @@
+services:
+  product-db:
+    image: postgres:17
+    container_name: product-db
+    environment:
+      POSTGRES_DB: product-db
+      POSTGRES_USER: ${username}
+      POSTGRES_PASSWORD: ${password}
+    volumes:
+      - product-db-data:/var/lib/postgresql/data
+    networks:
+      - myNetwork
+  product-service:
+    image: ajay/product-service
+    environment:
+      username: ${username}
+      password: ${password}
+    container_name: product-service
+    ports:
+      - "8080:8080"
+    networks:
+      - myNetwork
+    depends_on:
+      - product-db
+volumes:
+  product-db-data:
+
+
+networks:
+  myNetwork:

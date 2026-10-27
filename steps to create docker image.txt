@@ -1,0 +1,7 @@
+
+to create docker image using Dockerfile
+docker build -t imagename:version .
+
+
+to create docker image using maven plugin
+.\mvnw.cmd spring-boot:build-image
